@@ -1,4 +1,4 @@
-// Flatten grouped trial data (trial_info/exp_sample.json) or use a plain array of trials.
+// Flatten grouped trial data (trial_info/exp_sample.js) or use a plain array of trials.
 function flattenTrialPool(source) {
     var rows = [];
     if (!source) {
@@ -31,6 +31,9 @@ function flattenTrialPool(source) {
 
 function normalizeTrialRow(row) {
     var fp = row.filepath || row.filePath || "";
+    if (fp && fp.indexOf("http") !== 0 && fp.indexOf("stimuli/") !== 0) {
+        fp = "stimuli/" + fp;
+    }
     return {
         trial_id: row.trial_id,
         condition: row.condition || "",

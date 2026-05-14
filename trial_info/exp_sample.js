@@ -314,4 +314,4 @@ var imageListByGroup = [
     "background": "ntpond",
     "description": "A tan, medium-sized dog wearing a black harness stands on a gravel path beside a calm pond. The path curves through a lush green wooded park. Tall trees surround the area, and their reflections are visible in the water. The dog is facing right, alert and looking toward the pond."
   }
-];
+]
