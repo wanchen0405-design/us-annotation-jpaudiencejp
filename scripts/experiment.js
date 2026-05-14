@@ -62,11 +62,12 @@ exp.customize = function() {
     let trial_pool = flattenTrialPool(
         typeof imageListByGroup !== "undefined" ? imageListByGroup : []
     );
+    var trial_pool_size = trial_pool.length;
 
     // Each row should contain: condition, filepath, focal, background, description
     // (filePath and grouped JSON are normalized in flattenTrialPool.)
     console.log("=== Randomization starting ===");
-    console.log("Total rows in trial pool:", trial_pool.length);
+    console.log("Total rows in trial pool:", trial_pool_size);
   
     // Step 2: shuffle all rows
     trial_pool = _.shuffle(trial_pool);
@@ -123,10 +124,18 @@ exp.customize = function() {
       console.error("Used backgrounds:", used_backgrounds);
       console.error("Rejected trials:", rejected_trials);
   
-      alert(
-        `Randomization failed: only ${selected_trials.length} valid trials found. ` +
-        `You need at least ${REQUIRED_TRIALS} trials with unique focals and backgrounds.`
-      );
+      if (trial_pool_size === 0) {
+        alert(
+          "Randomization failed: no trials loaded. " +
+          "Check that index.html includes trial_info/exp_sample.js before scripts/experiment.js " +
+          "and that the file exists (it must define imageListByGroup)."
+        );
+      } else {
+        alert(
+          `Randomization failed: only ${selected_trials.length} valid trials found. ` +
+          `You need at least ${REQUIRED_TRIALS} trials with unique focals and backgrounds.`
+        );
+      }
     }
   
     // Step 5: shuffle selected trials again for final presentation order
