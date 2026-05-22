@@ -144,7 +144,7 @@ exp.customize = function() {
       if (trial_pool_size === 0) {
         alert(
           "Randomization failed: no trials loaded. " +
-          "Check that index.html includes trial_info/exp_sample.js before scripts/experiment.js, " +
+          "Check that index.html includes trial_info/exp_sample.json before scripts/experiment.js, " +
           "that the file loads without errors, and that it defines imageListByGroup (also on window)."
         );
       } else {
